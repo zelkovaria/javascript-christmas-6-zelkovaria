@@ -43,6 +43,20 @@ class Promotion {
       return 3400;
     }
   }
+
+  weekdayDiscount(date, menus) {
+    let weekdayDiscount = 0;
+    const weekday = [4, 5, 6, 7, 11, 12, 13, 14, 18, 19, 20, 21, 25];
+    if (weekday.includes(date)) {
+      const orderedDesserts = this.dessert.dessertProcessOrder(menus);
+      const totalDessertQuantity = orderedDesserts.reduce(
+        (total, dessert) => total + dessert.quantity,
+        0
+      );
+      weekdayDiscount = totalDessertQuantity * 2023;
+    }
+    return weekdayDiscount;
+  }
 }
 
 export default Promotion;
