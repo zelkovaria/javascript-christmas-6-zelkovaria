@@ -36,18 +36,23 @@ const OutputView = {
     );
   },
 
-  async readPromotions(discount) {
-    const discounts = await discount;
+  async readPromotions(discounts) {
+    const discountsData = await discounts;
     MissionUtils.Console.print("<혜택 내역>\n");
-    for (const [key, value] of Object.entries(discounts)) {
-      MissionUtils.Console.print(`${key}: -${value}원\n`);
+    for (const [key, value] of Object.entries(discountsData)) {
+      if (value !== 0 && value !== "없음") {
+        const formattedValue = `-${value}원`;
+        MissionUtils.Console.print(`${key}: ${formattedValue}\n`);
+      }
     }
   },
 
   readApplyPromotions(menus) {
     const promotion = new Promotion();
     const applyDiscounts = promotion.applyDiscount(menus);
-    MissionUtils.Console.print(`증정 이벤트: ${applyDiscounts}\n`);
+    if (applyDiscounts === "-25000") {
+      MissionUtils.Console.print(`증정 이벤트: ${applyDiscounts}\n`);
+    }
   },
 };
 
