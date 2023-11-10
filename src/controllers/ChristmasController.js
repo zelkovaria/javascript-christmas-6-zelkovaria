@@ -5,10 +5,16 @@ import Validator from "../utils/validator.js";
 import InputView from "../views/InputView.js";
 import OutputView from "../views/OutputView.js";
 import Appetizer from "../models/Appetizer.js";
+import MainCourse from "../models/MainCourse.js";
+import Dessert from "../models/Dessert.js";
+import Beverage from "../models/Beverage.js";
 
 class ChristmasController {
   constructor() {
     this.appetizer = new Appetizer();
+    this.maincourse = new MainCourse();
+    this.dessert = new Dessert();
+    this.beverage = new Beverage();
   }
 
   async orderStart() {
@@ -16,6 +22,13 @@ class ChristmasController {
     OutputView.readInputMenu(menus);
     MissionUtils.Console.print(
       this.appetizer.calculateAppetizerTotalPrice(menus)
+    );
+    MissionUtils.Console.print(
+      this.maincourse.calculateMainCourseTotalPrice(menus)
+    );
+    MissionUtils.Console.print(this.dessert.calculateDessertTotalPrice(menus));
+    MissionUtils.Console.print(
+      this.beverage.calculateBeverageTotalPrice(menus)
     );
   }
 

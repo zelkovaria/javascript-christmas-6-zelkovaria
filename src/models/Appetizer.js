@@ -23,14 +23,14 @@ class Appetizer {
   }
 
   calculateAppetizerTotalPrice(menus) {
-    let totalPrice = 0;
+    let appetizerTotalPrice = 0;
     menus.forEach((menu) => {
       const item = this.#items.find((item) => item.name === menu.name);
       if (item) {
-        totalPrice += item.price * menu.quantity;
+        appetizerTotalPrice += item.price * menu.quantity;
       }
     });
-    return totalPrice;
+    return appetizerTotalPrice;
   }
 }
 
