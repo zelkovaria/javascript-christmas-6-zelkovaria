@@ -18,6 +18,7 @@ class ChristmasController {
     OutputView.readInputMenu(menus);
     OutputView.readTotalPrice(menus);
     OutputView.readPromotionItems(menus);
+    OutputView.readApplyPromotions(menus);
 
     const discount = await this.#promotionTypes(nowDay, menus);
     OutputView.readPromotions(discount);
@@ -45,7 +46,10 @@ class ChristmasController {
   }
 
   async #promotionTypes(nowDay, menus) {
-    return this.promotion.dDayDiscount(nowDay);
+    return {
+      "크리스마스 디데이 할인": this.promotion.dDayDiscount(nowDay),
+      "평일 할인": this.promotion.weekdayDiscount(nowDay, menus),
+    };
   }
 }
 export default ChristmasController;

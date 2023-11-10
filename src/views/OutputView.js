@@ -36,9 +36,18 @@ const OutputView = {
     );
   },
 
-  async readPromotions(discounts) {
-    const discount = await discounts;
-    MissionUtils.Console.print("<혜택 내역>\n" + discount);
+  async readPromotions(discount) {
+    const discounts = await discount;
+    MissionUtils.Console.print("<혜택 내역>\n");
+    for (const [key, value] of Object.entries(discounts)) {
+      MissionUtils.Console.print(`${key}: -${value}원\n`);
+    }
+  },
+
+  readApplyPromotions(menus) {
+    const promotion = new Promotion();
+    const applyDiscounts = promotion.applyDiscount(menus);
+    MissionUtils.Console.print(`증정 이벤트: ${applyDiscounts}\n`);
   },
 };
 

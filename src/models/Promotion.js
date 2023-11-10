@@ -3,6 +3,7 @@ import MainCourse from "../models/MainCourse.js";
 import Dessert from "../models/Dessert.js";
 import Beverage from "../models/Beverage.js";
 import FormatPrice from "../utils/FormatPrice.js";
+import { MissionUtils } from "@woowacourse/mission-utils";
 
 class Promotion {
   constructor() {
@@ -47,7 +48,7 @@ class Promotion {
   weekdayDiscount(date, menus) {
     let weekdayDiscount = 0;
     const weekday = [4, 5, 6, 7, 11, 12, 13, 14, 18, 19, 20, 21, 25];
-    if (weekday.includes(date)) {
+    if (weekday.includes(parseInt(date, 10))) {
       const orderedDesserts = this.dessert.dessertProcessOrder(menus);
       const totalDessertQuantity = orderedDesserts.reduce(
         (total, dessert) => total + dessert.quantity,
@@ -56,6 +57,15 @@ class Promotion {
       weekdayDiscount = totalDessertQuantity * 2023;
     }
     return weekdayDiscount;
+  }
+
+  applyDiscount(menus) {
+    if (this.applyPromotionItems(menus) === "샴페인 1개") {
+      return "-25,000원";
+    }
+    if (this.applyPromotionItems(menus) === "없음") {
+      return "없음";
+    }
   }
 }
 
