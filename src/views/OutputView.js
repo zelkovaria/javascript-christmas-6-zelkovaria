@@ -13,6 +13,9 @@ const OutputView = {
     const formattedOrders = menuOrders
       .map((order) => `${order.name} ${order.quantity}개`)
       .join("\n");
+    MissionUtils.Console.print(
+      "12월 3일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!" + "\n"
+    );
     MissionUtils.Console.print("<주문 메뉴>\n" + formattedOrders + "\n");
   },
 
