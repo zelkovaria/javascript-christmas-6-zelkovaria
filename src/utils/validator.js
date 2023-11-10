@@ -13,25 +13,39 @@ class Validator {
     }
   }
 
-  static validateMenuOrder(order) {
+  static validateMenuOrder(orders) {
     if (
-      MenuParser.divideMenuSet(order).length !== 2 ||
-      !MenuParser.divideMenuSet(order)[1] ||
-      isNaN(parseInt(MenuParser.divideMenuSet(order)[1], 10))
+      MenuParser.divideMenuSet(orders).length !== 2 ||
+      !MenuParser.divideMenuSet(orders)[1] ||
+      isNaN(parseInt(MenuParser.divideMenuSet(orders)[1], 10))
     ) {
       throw new Error(MESSAGE.INVALID_MENU_ORDER);
     }
   }
 
-  static validateMenuQuantity(order) {
-    if (parseInt(MenuParser.divideMenuSet(order)[1], 10) <= 0) {
+  static validateMenuQuantity(orders) {
+    if (parseInt(MenuParser.divideMenuSet(orders)[1], 10) <= 0) {
       throw new Error(MESSAGE.INVALID_MENU_ORDER);
     }
   }
 
-  static totalMenuValidator(order) {
-    this.validateMenuOrder(order);
-    this.validateMenuQuantity(order);
+  static validateMenuRepeat(orders) {
+    const menuSet = new Set();
+    orders.forEach((order) => {
+      const menuName = order.split("-")[0].trim();
+      if (menuSet.has(menuName)) {
+        throw new Error(MESSAGE.INVALID_MENU_ORDER);
+      }
+      menuSet.add(menuName);
+    });
+  }
+
+  static totalMenuValidator(orders) {
+    orders.forEach((order) => {
+      this.validateMenuOrder(order);
+      this.validateMenuQuantity(order);
+    });
+    this.validateMenuRepeat(orders);
   }
 }
 
