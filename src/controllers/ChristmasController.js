@@ -21,7 +21,7 @@ class ChristmasController {
       try {
         const userInput = await InputView.inputUserMenu();
         const orders = userInput.map((item) => item.trim());
-        orders.forEach((order) => Validator.validateMenuOrder(order));
+        orders.forEach((order) => Validator.totalMenuValidator(order));
         menuOrders = orders.map((order) => {
           const [name, quantity] = order.split("-");
           return { name, quantity: parseInt(quantity, 10) };

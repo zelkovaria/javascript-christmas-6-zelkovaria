@@ -22,6 +22,17 @@ class Validator {
       throw new Error(MESSAGE.INVALID_MENU_ORDER);
     }
   }
+
+  static validateMenuQuantity(order) {
+    if (parseInt(MenuParser.divideMenuSet(order)[1], 10) <= 0) {
+      throw new Error(MESSAGE.INVALID_MENU_ORDER);
+    }
+  }
+
+  static totalMenuValidator(order) {
+    this.validateMenuOrder(order);
+    this.validateMenuQuantity(order);
+  }
 }
 
 export default Validator;
