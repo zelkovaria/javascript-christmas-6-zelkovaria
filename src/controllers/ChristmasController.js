@@ -4,21 +4,14 @@ import { MESSAGE } from "../constants/message.js";
 import Validator from "../utils/validator.js";
 import InputView from "../views/InputView.js";
 import OutputView from "../views/OutputView.js";
-import Promotion from "../models/Promotion.js";
 
 class ChristmasController {
-  constructor() {
-    this.promotion = new Promotion();
-  }
+  constructor() {}
 
   async orderStart() {
     const menus = await this.#getInputMenu();
     OutputView.readInputMenu(menus);
-    MissionUtils.Console.print(
-      "<할인 전 총주문 금액>\n" +
-        this.promotion.calculateTotalPrice(menus) +
-        "원"
-    );
+    OutputView.readTotalPrice(menus);
   }
 
   async #getInputMenu() {
