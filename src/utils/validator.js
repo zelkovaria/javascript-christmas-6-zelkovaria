@@ -1,5 +1,6 @@
 import { MESSAGE } from "../constants/message.js";
 import { CONSTANTS } from "../constants/constants.js";
+import MenuParser from "../utils/MenuParser.js";
 
 class Validator {
   static validateDate(date) {
@@ -13,8 +14,11 @@ class Validator {
   }
 
   static validateMenuOrder(order) {
-    const parts = order.split("-");
-    if (parts.length !== 2 || !parts[1] || isNaN(parseInt(parts[1], 10))) {
+    if (
+      MenuParser.divideMenuSet(order).length !== 2 ||
+      !MenuParser.divideMenuSet(order)[1] ||
+      isNaN(parseInt(MenuParser.divideMenuSet(order)[1], 10))
+    ) {
       throw new Error(MESSAGE.INVALID_MENU_ORDER);
     }
   }
