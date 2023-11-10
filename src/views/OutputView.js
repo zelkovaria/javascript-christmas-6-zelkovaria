@@ -9,9 +9,9 @@ const OutputView = {
 
   readInputMenu(menuOrders) {
     const formattedOrders = menuOrders
-      .map((order) => `${order.name} -> 수량: ${order.quantity}`)
-      .join(", ");
-    MissionUtils.Console.print(`주문하신 메뉴: ${formattedOrders}`);
+      .map((order) => `${order.name} ${order.quantity}개`)
+      .join("\n");
+    MissionUtils.Console.print("<주문 메뉴>\n" + formattedOrders);
   },
 };
 
