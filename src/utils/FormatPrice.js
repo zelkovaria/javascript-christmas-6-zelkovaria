@@ -4,6 +4,10 @@ class FormatPrice {
       style: "decimal",
     }).format(price);
   }
+
+  static replaceFormatPrice(price) {
+    return parseInt(price.replace(/,/g, ""), 10);
+  }
 }
 
 export default FormatPrice;

@@ -19,7 +19,17 @@ const OutputView = {
   readTotalPrice(menus) {
     const promotion = new Promotion();
     MissionUtils.Console.print(
-      "<할인 전 총주문 금액>\n" + promotion.calculateTotalPrice(menus) + "원"
+      "<할인 전 총주문 금액>\n" +
+        promotion.calculateTotalPrice(menus) +
+        "원" +
+        "\n"
+    );
+  },
+
+  readPromotionItems(menus) {
+    const promotion = new Promotion();
+    MissionUtils.Console.print(
+      "<증정 메뉴>\n" + promotion.applyPromotionItems(menus) + "\n"
     );
   },
 };

@@ -8,10 +8,11 @@ import OutputView from "../views/OutputView.js";
 class ChristmasController {
   constructor() {}
 
-  async orderStart() {
+  async order() {
     const menus = await this.#getInputMenu();
     OutputView.readInputMenu(menus);
     OutputView.readTotalPrice(menus);
+    OutputView.readPromotionItems(menus);
   }
 
   async #getInputMenu() {

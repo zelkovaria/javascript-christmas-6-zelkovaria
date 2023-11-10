@@ -26,6 +26,19 @@ class Promotion {
 
     return FormatPrice.formatPrice(totalPrice);
   }
+
+  applyPromotionItems(menus) {
+    const beforeDiscountPrice = FormatPrice.replaceFormatPrice(
+      this.calculateTotalPrice(menus)
+    );
+    const validItems = "샴페인 1개";
+    const notValidItems = "없음";
+
+    if (beforeDiscountPrice >= 120000) {
+      return validItems;
+    }
+    return notValidItems;
+  }
 }
 
 export default Promotion;

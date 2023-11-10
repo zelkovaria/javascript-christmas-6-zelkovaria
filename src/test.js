@@ -5,7 +5,7 @@ async function runTest() {
   await OutputView.readDate();
 
   const controller = new ChristmasController();
-  await controller.orderStart();
+  await controller.order();
 }
 
 runTest();
