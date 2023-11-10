@@ -1,8 +1,3 @@
-import { MissionUtils } from "@woowacourse/mission-utils";
-
-import Validator from "../utils/validator.js";
-import InputView from "../views/InputView.js";
-import OutputView from "../views/OutputView.js";
 import Appetizer from "../models/Appetizer.js";
 import MainCourse from "../models/MainCourse.js";
 import Dessert from "../models/Dessert.js";
@@ -38,6 +33,15 @@ class Promotion {
       return validItems;
     }
     return notValidItems;
+  }
+
+  dDayDiscount(date) {
+    if (date >= 1 && date <= 25) {
+      return 1000 + (date - 1) * 100;
+    }
+    if (date > 25) {
+      return 3400;
+    }
   }
 }
 

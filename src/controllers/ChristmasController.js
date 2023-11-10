@@ -4,15 +4,23 @@ import { MESSAGE } from "../constants/message.js";
 import Validator from "../utils/validator.js";
 import InputView from "../views/InputView.js";
 import OutputView from "../views/OutputView.js";
+import Promotion from "../models/Promotion.js";
+import DateManager from "../models/Date.js";
 
 class ChristmasController {
-  constructor() {}
+  constructor() {
+    this.promotion = new Promotion();
+  }
 
   async order() {
+    const nowDay = await DateManager.getDate();
     const menus = await this.#getInputMenu();
     OutputView.readInputMenu(menus);
     OutputView.readTotalPrice(menus);
     OutputView.readPromotionItems(menus);
+
+    const discount = await this.#totalPromotion(nowDay); // 할인 계산
+    OutputView.readPromotions(discount);
   }
 
   async #getInputMenu() {
@@ -34,6 +42,10 @@ class ChristmasController {
       }
     }
     return menuOrders;
+  }
+
+  async #totalPromotion(nowDay) {
+    return this.promotion.dDayDiscount(nowDay);
   }
 }
 export default ChristmasController;

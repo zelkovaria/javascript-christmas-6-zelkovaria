@@ -35,6 +35,11 @@ const OutputView = {
       "<증정 메뉴>\n" + promotion.applyPromotionItems(menus) + "\n"
     );
   },
+
+  async readPromotions(discounts) {
+    const discount = await discounts;
+    MissionUtils.Console.print("<혜택 내역>\n" + discount);
+  },
 };
 
 export default OutputView;
