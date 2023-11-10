@@ -1,6 +1,9 @@
+import { MissionUtils } from "@woowacourse/mission-utils";
+
 import Validator from "../utils/validator.js";
 import InputView from "../views/InputView.js";
 import OutputView from "../views/OutputView.js";
+import { MESSAGE } from "../constants/message.js";
 
 class ChristmasController {
   constructor() {}
@@ -25,7 +28,7 @@ class ChristmasController {
         });
         inputValid = true;
       } catch (error) {
-        MissionUtils.Console.print("[ERROR]");
+        MissionUtils.Console.print(MESSAGE.INVALID_MENU_ORDER);
       }
     }
     return menuOrders;
