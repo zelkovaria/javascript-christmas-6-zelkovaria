@@ -1,16 +1,22 @@
 import { MissionUtils } from "@woowacourse/mission-utils";
 
+import { MESSAGE } from "../constants/message.js";
 import Validator from "../utils/validator.js";
 import InputView from "../views/InputView.js";
 import OutputView from "../views/OutputView.js";
-import { MESSAGE } from "../constants/message.js";
+import Appetizer from "../models/Appetizer.js";
 
 class ChristmasController {
-  constructor() {}
+  constructor() {
+    this.appetizer = new Appetizer();
+  }
 
   async orderStart() {
     const menus = await this.#getInputMenu();
     OutputView.readInputMenu(menus);
+    MissionUtils.Console.print(
+      this.appetizer.calculateAppetizerTotalPrice(menus)
+    );
   }
 
   async #getInputMenu() {
