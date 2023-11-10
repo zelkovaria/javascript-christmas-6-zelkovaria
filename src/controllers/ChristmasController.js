@@ -1,17 +1,34 @@
-import Appetizer from "../models/Appetizer.js";
-import MainCourse from "../models/MainCourse.js";
-import Dessert from "../models/Dessert.js";
-import Beverage from "../models/Beverage.js";
+import Validator from "../utils/validator.js";
 import InputView from "../views/InputView.js";
 import OutputView from "../views/OutputView.js";
 
 class ChristmasController {
-  #inputView;
-  #outputView;
+  constructor() {}
 
-  constructor() {
-    this.#inputView = new InputView();
-    this.#outputView = new OutputView();
+  async orderStart() {
+    const menus = await this.#getInputMenu();
+    OutputView.readInputMenu(menus);
+  }
+
+  async #getInputMenu() {
+    let menuOrders = [];
+    let inputValid = false;
+
+    while (!inputValid) {
+      try {
+        const userInput = await InputView.inputUserMenu();
+        const orders = userInput.map((item) => item.trim());
+        orders.forEach((order) => Validator.validateMenuOrder(order));
+        menuOrders = orders.map((order) => {
+          const [name, quantity] = order.split("-");
+          return { name, quantity: parseInt(quantity, 10) };
+        });
+        inputValid = true;
+      } catch (error) {
+        MissionUtils.Console.print("[ERROR]");
+      }
+    }
+    return menuOrders;
   }
 }
 export default ChristmasController;
