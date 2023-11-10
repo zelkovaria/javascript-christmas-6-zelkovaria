@@ -11,7 +11,7 @@ const OutputView = {
     const formattedOrders = menuOrders
       .map((order) => `${order.name} ${order.quantity}개`)
       .join("\n");
-    MissionUtils.Console.print("<주문 메뉴>\n" + formattedOrders);
+    MissionUtils.Console.print("<주문 메뉴>\n" + formattedOrders + "\n");
   },
 };
 
