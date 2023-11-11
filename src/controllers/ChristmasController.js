@@ -19,7 +19,6 @@ class ChristmasController {
     OutputView.readInputMenu(menus);
     OutputView.readTotalPrice(menus);
     OutputView.readPromotionItems(menus);
-    OutputView.readApplyPromotions(menus);
 
     const discount = await this.#promotionTypes(nowDay, menus);
     OutputView.readPromotions(discount);
@@ -60,6 +59,9 @@ class ChristmasController {
       ),
       "특별 할인": FormatPrice.formatPrice(
         this.promotion.specailDiscount(nowDay)
+      ),
+      "증정 이벤트": FormatPrice.formatPrice(
+        this.promotion.applyDiscount(menus)
       ),
     };
   }

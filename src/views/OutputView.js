@@ -43,16 +43,8 @@ const OutputView = {
     for (const [key, value] of Object.entries(discountsData)) {
       if (FormatPrice.replaceFormatPrice(value) !== 0 && value !== "없음") {
         const formattedValue = `-${value}원`;
-        MissionUtils.Console.print(`${key}: ${formattedValue}\n`);
+        MissionUtils.Console.print(`${key}: ${formattedValue}`);
       }
-    }
-  },
-
-  readApplyPromotions(menus) {
-    const promotion = new Promotion();
-    const applyDiscounts = promotion.applyDiscount(menus);
-    if (applyDiscounts === "-25000") {
-      MissionUtils.Console.print(`증정 이벤트: ${applyDiscounts}\n`);
     }
   },
 

@@ -76,11 +76,9 @@ class Promotion {
 
   applyDiscount(menus) {
     if (this.applyPromotionItems(menus) === "샴페인 1개") {
-      return "-25,000원";
+      return 25000;
     }
-    if (this.applyPromotionItems(menus) === "없음") {
-      return "없음";
-    }
+    return 0;
   }
 
   specailDiscount(date) {
