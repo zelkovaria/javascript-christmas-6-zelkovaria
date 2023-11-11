@@ -46,7 +46,9 @@ class Promotion {
 
   weekdayDiscount(date, menus) {
     let weekdayDiscount = 0;
-    const weekday = [4, 5, 6, 7, 11, 12, 13, 14, 18, 19, 20, 21, 25];
+    const weekday = [
+      3, 4, 5, 6, 7, 10, 11, 12, 13, 14, 17, 18, 19, 20, 21, 24, 25, 31,
+    ];
     if (weekday.includes(parseInt(date, 10))) {
       const orderedDesserts = this.dessert.dessertProcessOrder(menus);
       const totalDessertQuantity = orderedDesserts.reduce(
@@ -88,6 +90,15 @@ class Promotion {
     if (specialDay.includes(parseInt(date, 10))) {
       return specailDayDiscount;
     }
+  }
+
+  calculateTotalDiscount(date, menus) {
+    return (
+      this.dDayDiscount(date) +
+      this.weekdayDiscount(date, menus) +
+      this.weekendDiscount(date, menus) +
+      this.specailDiscount(date)
+    );
   }
 }
 

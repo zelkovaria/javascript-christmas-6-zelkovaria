@@ -55,6 +55,11 @@ const OutputView = {
       MissionUtils.Console.print(`증정 이벤트: ${applyDiscounts}\n`);
     }
   },
+
+  readTotalDiscount(totalDiscount) {
+    MissionUtils.Console.print("<총혜택 금액>");
+    MissionUtils.Console.print(`-${FormatPrice.formatPrice(totalDiscount)}`);
+  },
 };
 
 export default OutputView;

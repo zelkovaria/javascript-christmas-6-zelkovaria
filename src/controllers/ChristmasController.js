@@ -23,6 +23,7 @@ class ChristmasController {
 
     const discount = await this.#promotionTypes(nowDay, menus);
     OutputView.readPromotions(discount);
+    OutputView.readTotalDiscount(this.#totalDiscountPrice(nowDay, menus));
   }
 
   async #getInputMenu() {
@@ -61,6 +62,10 @@ class ChristmasController {
         this.promotion.specailDiscount(nowDay)
       ),
     };
+  }
+
+  #totalDiscountPrice(nowDay, menus) {
+    return this.promotion.calculateTotalDiscount(nowDay, menus);
   }
 }
 export default ChristmasController;
