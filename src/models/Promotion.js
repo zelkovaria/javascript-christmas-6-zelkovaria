@@ -3,7 +3,6 @@ import MainCourse from "../models/MainCourse.js";
 import Dessert from "../models/Dessert.js";
 import Beverage from "../models/Beverage.js";
 import FormatPrice from "../utils/FormatPrice.js";
-import { MissionUtils } from "@woowacourse/mission-utils";
 
 class Promotion {
   constructor() {
@@ -79,6 +78,15 @@ class Promotion {
     }
     if (this.applyPromotionItems(menus) === "없음") {
       return "없음";
+    }
+  }
+
+  specailDiscount(date) {
+    let specailDayDiscount = 1000;
+    const specialDay = [3, 10, 17, 24, 25, 31];
+
+    if (specialDay.includes(parseInt(date, 10))) {
+      return specailDayDiscount;
     }
   }
 }

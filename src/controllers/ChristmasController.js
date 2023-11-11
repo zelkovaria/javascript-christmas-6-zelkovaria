@@ -6,6 +6,7 @@ import InputView from "../views/InputView.js";
 import OutputView from "../views/OutputView.js";
 import Promotion from "../models/Promotion.js";
 import DateManager from "../models/Date.js";
+import FormatPrice from "../utils/FormatPrice.js";
 
 class ChristmasController {
   constructor() {
@@ -47,9 +48,18 @@ class ChristmasController {
 
   async #promotionTypes(nowDay, menus) {
     return {
-      "크리스마스 디데이 할인": this.promotion.dDayDiscount(nowDay),
-      "평일 할인": this.promotion.weekdayDiscount(nowDay, menus),
-      "주말 할인": this.promotion.weekendDiscount(nowDay, menus),
+      "크리스마스 디데이 할인": FormatPrice.formatPrice(
+        this.promotion.dDayDiscount(nowDay)
+      ),
+      "평일 할인": FormatPrice.formatPrice(
+        this.promotion.weekdayDiscount(nowDay, menus)
+      ),
+      "주말 할인": FormatPrice.formatPrice(
+        this.promotion.weekendDiscount(nowDay, menus)
+      ),
+      "특별 할인": FormatPrice.formatPrice(
+        this.promotion.specailDiscount(nowDay)
+      ),
     };
   }
 }

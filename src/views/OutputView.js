@@ -2,6 +2,7 @@ import { MissionUtils } from "@woowacourse/mission-utils";
 import InputView from "./InputView.js";
 
 import Promotion from "../models/Promotion.js";
+import FormatPrice from "../utils/FormatPrice.js";
 
 const OutputView = {
   async readDate() {
@@ -40,7 +41,7 @@ const OutputView = {
     const discountsData = await discounts;
     MissionUtils.Console.print("<혜택 내역>\n");
     for (const [key, value] of Object.entries(discountsData)) {
-      if (value !== 0 && value !== "없음") {
+      if (FormatPrice.replaceFormatPrice(value) !== 0 && value !== "없음") {
         const formattedValue = `-${value}원`;
         MissionUtils.Console.print(`${key}: ${formattedValue}\n`);
       }
