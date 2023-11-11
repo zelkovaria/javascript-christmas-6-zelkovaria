@@ -58,7 +58,7 @@ const OutputView = {
 
   readTotalDiscount(totalDiscount) {
     MissionUtils.Console.print("<총혜택 금액>");
-    MissionUtils.Console.print(`-${FormatPrice.formatPrice(totalDiscount)}`);
+    MissionUtils.Console.print(`-${FormatPrice.formatPrice(totalDiscount)}\n`);
   },
 };
 

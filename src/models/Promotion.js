@@ -84,21 +84,28 @@ class Promotion {
   }
 
   specailDiscount(date) {
-    let specailDayDiscount = 1000;
+    let specailDayDiscount = 0;
     const specialDay = [3, 10, 17, 24, 25, 31];
 
     if (specialDay.includes(parseInt(date, 10))) {
-      return specailDayDiscount;
+      specailDayDiscount = 1000;
     }
+
+    return specailDayDiscount;
   }
 
   calculateTotalDiscount(date, menus) {
-    return (
+    let totalDiscount =
       this.dDayDiscount(date) +
       this.weekdayDiscount(date, menus) +
       this.weekendDiscount(date, menus) +
-      this.specailDiscount(date)
-    );
+      this.specailDiscount(date);
+
+    if (this.applyPromotionItems(menus) === "샴페인 1개") {
+      totalDiscount += 25000;
+    }
+
+    return totalDiscount;
   }
 }
 
