@@ -50,16 +50,22 @@ const OutputView = {
 
   readTotalDiscount(totalDiscount) {
     MissionUtils.Console.print("<총혜택 금액>");
-    MissionUtils.Console.print(`-${FormatPrice.formatPrice(totalDiscount)}\n`);
+    if (totalDiscount === 0) {
+      MissionUtils.Console.print("0원\n");
+    } else {
+      MissionUtils.Console.print(
+        `-${FormatPrice.formatPrice(totalDiscount)}원\n`
+      );
+    }
   },
 
   readAfterDiscountPrice(price, totalDiscount) {
     MissionUtils.Console.print("<할인 후 예상 결제 금액>");
     if (totalDiscount > 0) {
-      MissionUtils.Console.print(FormatPrice.formatPrice(price) + "원");
+      MissionUtils.Console.print(FormatPrice.formatPrice(price) + "원\n");
     } else {
       MissionUtils.Console.print(
-        FormatPrice.formatPrice(price - totalDiscount) + "원"
+        FormatPrice.formatPrice(price - totalDiscount) + "원\n"
       );
     }
   },
