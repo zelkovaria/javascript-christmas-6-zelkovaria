@@ -16,13 +16,16 @@ class ChristmasController {
   async order() {
     const nowDay = await DateManager.getDate();
     const menus = await this.#getInputMenu();
-    OutputView.readInputMenu(menus);
+    OutputView.readInputMenu(nowDay, menus);
     OutputView.readTotalPrice(menus);
     OutputView.readPromotionItems(menus);
 
     const discount = await this.#promotionTypes(nowDay, menus);
     OutputView.readPromotions(discount);
     OutputView.readTotalDiscount(this.#totalDiscountPrice(nowDay, menus));
+    OutputView.readAfterDiscountPrice(
+      this.promotion.afterDiscountPrice(nowDay, menus)
+    );
   }
 
   async #getInputMenu() {

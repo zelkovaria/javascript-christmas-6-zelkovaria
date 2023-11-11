@@ -105,6 +105,19 @@ class Promotion {
 
     return totalDiscount;
   }
+
+  afterDiscountPrice(date, menus) {
+    const totalPrice = FormatPrice.replaceFormatPrice(
+      this.calculateTotalPrice(menus)
+    );
+    let totalDiscount = this.calculateTotalDiscount(date, menus);
+
+    if (this.applyPromotionItems(menus) === "샴페인 1개") {
+      totalDiscount -= 25000;
+    }
+
+    return totalPrice - totalDiscount;
+  }
 }
 
 export default Promotion;
