@@ -24,8 +24,12 @@ class ChristmasController {
     OutputView.readPromotions(discount);
     OutputView.readTotalDiscount(this.#totalDiscountPrice(nowDay, menus));
     OutputView.readAfterDiscountPrice(
-      this.promotion.afterDiscountPrice(nowDay, menus)
+      this.promotion.afterDiscountPrice(nowDay, menus),
+      this.#totalDiscountPrice(nowDay, menus)
     );
+
+    const badge = this.promotion.getDiscountBadge(nowDay, menus);
+    OutputView.readDiscountBadge(badge);
   }
 
   async #getInputMenu() {
@@ -41,6 +45,7 @@ class ChristmasController {
           const [name, quantity] = order.split("-");
           return { name, quantity: parseInt(quantity, 10) };
         });
+
         inputValid = true;
       } catch (error) {
         MissionUtils.Console.print(MESSAGE.INVALID_MENU_ORDER);

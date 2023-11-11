@@ -53,9 +53,20 @@ const OutputView = {
     MissionUtils.Console.print(`-${FormatPrice.formatPrice(totalDiscount)}\n`);
   },
 
-  readAfterDiscountPrice(price) {
+  readAfterDiscountPrice(price, totalDiscount) {
     MissionUtils.Console.print("<할인 후 예상 결제 금액>");
-    MissionUtils.Console.print(FormatPrice.formatPrice(price) + "\n");
+    if (totalDiscount > 0) {
+      MissionUtils.Console.print(FormatPrice.formatPrice(price) + "원");
+    } else {
+      MissionUtils.Console.print(
+        FormatPrice.formatPrice(price - totalDiscount) + "원"
+      );
+    }
+  },
+
+  readDiscountBadge(badge) {
+    MissionUtils.Console.print("<12월 이벤트 배지>");
+    MissionUtils.Console.print(badge + "\n");
   },
 };
 

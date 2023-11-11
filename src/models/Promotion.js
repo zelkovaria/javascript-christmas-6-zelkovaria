@@ -93,6 +93,14 @@ class Promotion {
   }
 
   calculateTotalDiscount(date, menus) {
+    const beforeDiscountPrice = FormatPrice.replaceFormatPrice(
+      this.calculateTotalPrice(menus)
+    );
+
+    if (beforeDiscountPrice < 10000) {
+      return 0;
+    }
+
     let totalDiscount =
       this.dDayDiscount(date) +
       this.weekdayDiscount(date, menus) +
@@ -117,6 +125,21 @@ class Promotion {
     }
 
     return totalPrice - totalDiscount;
+  }
+
+  getDiscountBadge(date, menus) {
+    const totalDiscount = this.calculateTotalDiscount(date, menus);
+
+    if (totalDiscount >= 20000) {
+      return "산타";
+    }
+    if (totalDiscount >= 10000) {
+      return "트리";
+    }
+    if (totalDiscount >= 5000) {
+      return "별";
+    }
+    return "없음";
   }
 }
 
