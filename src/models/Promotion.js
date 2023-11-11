@@ -59,6 +59,20 @@ class Promotion {
     return weekdayDiscount;
   }
 
+  weekendDiscount(date, menus) {
+    let weekendDiscount = 0;
+    const weekend = [1, 2, 8, 9, 15, 16, 22, 23, 29, 30];
+    if (weekend.includes(parseInt(date, 10))) {
+      const orderedMainCourse = this.maincourse.mainCourseProcessOrder(menus);
+      const totalMainCourseQuantity = orderedMainCourse.reduce(
+        (total, maincourse) => total + maincourse.quantity,
+        0
+      );
+      weekendDiscount = totalMainCourseQuantity * 2023;
+    }
+    return weekendDiscount;
+  }
+
   applyDiscount(menus) {
     if (this.applyPromotionItems(menus) === "샴페인 1개") {
       return "-25,000원";

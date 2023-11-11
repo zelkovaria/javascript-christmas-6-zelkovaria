@@ -49,6 +49,7 @@ class ChristmasController {
     return {
       "크리스마스 디데이 할인": this.promotion.dDayDiscount(nowDay),
       "평일 할인": this.promotion.weekdayDiscount(nowDay, menus),
+      "주말 할인": this.promotion.weekendDiscount(nowDay, menus),
     };
   }
 }
