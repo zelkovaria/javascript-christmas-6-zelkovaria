@@ -1,6 +1,7 @@
 import { MESSAGE } from "../constants/message.js";
 import { CONSTANTS } from "../constants/constants.js";
 import MenuParser from "../utils/MenuParser.js";
+import Promotion from "../models/Promotion.js";
 
 class Validator {
   static validateDate(date) {
@@ -51,6 +52,12 @@ class Validator {
       this.validateMenuQuantity(order);
     });
     this.validateMenuRepeat(orders);
+  }
+
+  static validateOnlyBeverage(menus, promotion) {
+    if (promotion.isOnlyBeverageOrder(menus)) {
+      throw new Error("[ERROR] 음료만 주문할 수 없습니다.");
+    }
   }
 }
 
