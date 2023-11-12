@@ -37,7 +37,7 @@ class Validator {
   static validateMenuRepeat(orders) {
     const menuSet = new Set();
     orders.forEach((order) => {
-      const menuName = order.split("-")[0].trim();
+      const menuName = MenuParser.divideMenuSet(order)[0].trim();
       if (menuSet.has(menuName)) {
         throw new Error(MESSAGE.INVALID_MENU_ORDER);
       }

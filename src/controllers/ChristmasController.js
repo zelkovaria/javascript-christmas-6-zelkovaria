@@ -7,6 +7,7 @@ import OutputView from "../views/OutputView.js";
 import Promotion from "../models/Promotion.js";
 import DateManager from "../models/Date.js";
 import FormatPrice from "../utils/FormatPrice.js";
+import MenuParser from "../utils/MenuParser.js";
 
 class ChristmasController {
   constructor() {
@@ -45,7 +46,7 @@ class ChristmasController {
         const orders = userInput.map((item) => item.trim());
         Validator.totalMenuValidator(orders);
         menuOrders = orders.map((order) => {
-          const [name, quantity] = order.split("-");
+          const [name, quantity] = MenuParser.divideMenuSet(order);
           return { name, quantity: parseInt(quantity, 10) };
         });
 
