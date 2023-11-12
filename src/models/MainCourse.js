@@ -33,6 +33,10 @@ class MainCourse {
     });
     return mainCourseTotalPrice;
   }
+
+  isMenuAvailable(menuName) {
+    return this.#items.some((item) => item.name === menuName);
+  }
 }
 
 export default MainCourse;

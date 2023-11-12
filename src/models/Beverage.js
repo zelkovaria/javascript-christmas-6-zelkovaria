@@ -32,5 +32,9 @@ class Beverage {
     });
     return beverageTotalPrice;
   }
+
+  isMenuAvailable(menuName) {
+    return this.#items.some((item) => item.name === menuName);
+  }
 }
 export default Beverage;

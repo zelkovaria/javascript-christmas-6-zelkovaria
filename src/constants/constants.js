@@ -25,4 +25,5 @@ export const CONSTANTS = Object.freeze({
   PROMOTION_WEEKDAY: "평일 할인",
   PROMOTION_WEKKEND: "주말 할인",
   PROMOTION_SPECAIL: "특별 할인",
+  PROMOTION_GIFT: "증정 이벤트",
 });

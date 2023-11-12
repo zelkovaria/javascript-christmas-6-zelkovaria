@@ -148,6 +148,23 @@ class Promotion {
     }
     return CONSTANTS.BADGE_NOTHING;
   }
+
+  isOnlyBeverageOrder(menus) {
+    const hasAppetizer = menus.some((menu) =>
+      this.appetizer.isMenuAvailable(menu.name)
+    );
+    const hasMainCourse = menus.some((menu) =>
+      this.maincourse.isMenuAvailable(menu.name)
+    );
+    const hasDessert = menus.some((menu) =>
+      this.dessert.isMenuAvailable(menu.name)
+    );
+    const hasBeverage = menus.every((menu) =>
+      this.beverage.isMenuAvailable(menu.name)
+    );
+
+    return hasBeverage && !hasAppetizer && !hasMainCourse && !hasDessert;
+  }
 }
 
 export default Promotion;

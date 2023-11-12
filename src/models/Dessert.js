@@ -31,5 +31,9 @@ class Dessert {
     });
     return dessertTotalPrice;
   }
+
+  isMenuAvailable(menuName) {
+    return this.#items.some((item) => item.name === menuName);
+  }
 }
 export default Dessert;

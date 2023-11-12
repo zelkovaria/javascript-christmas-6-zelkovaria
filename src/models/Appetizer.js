@@ -32,6 +32,10 @@ class Appetizer {
     });
     return appetizerTotalPrice;
   }
+
+  isMenuAvailable(menuName) {
+    return this.#items.some((item) => item.name === menuName);
+  }
 }
 
 export default Appetizer;

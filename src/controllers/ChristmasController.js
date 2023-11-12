@@ -19,6 +19,10 @@ class ChristmasController {
     const nowDay = await DateManager.getDate();
     const menus = await this.#getInputMenu();
 
+    if (this.promotion.isOnlyBeverageOrder(menus)) {
+      throw new Error("[ERROR] 음료만 주문할 수 없습니다.");
+    }
+
     OutputView.readInputMenu(nowDay, menus);
     OutputView.readTotalPrice(menus);
     OutputView.readPromotionItems(menus);
