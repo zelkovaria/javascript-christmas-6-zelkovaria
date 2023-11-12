@@ -3,55 +3,66 @@ import InputView from "./InputView.js";
 
 import Promotion from "../models/Promotion.js";
 import FormatPrice from "../utils/FormatPrice.js";
+import { MESSAGE } from "../constants/message.js";
+import { CONSTANTS } from "../constants/constants.js";
 
 const OutputView = {
   async readDate() {
     const date = await InputView.readDate();
-    MissionUtils.Console.print(`입력날짜 ${date}`);
+    MissionUtils.Console.print(MESSAGE.OUTPUT_USER_DATE);
   },
 
   readInputMenu(date, menuOrders) {
     const formattedOrders = menuOrders
       .map((order) => `${order.name} ${order.quantity}개`)
       .join("\n");
+    MissionUtils.Console.print(MESSAGE.OUTPUT_EVENT_PREVIEW);
     MissionUtils.Console.print(
-      `12월 ${date}일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!\n`
+      MESSAGE.OUTPUT_ORDERED_MENU + formattedOrders + "\n"
     );
-    MissionUtils.Console.print("<주문 메뉴>\n" + formattedOrders + "\n");
   },
 
   readTotalPrice(menus) {
     const promotion = new Promotion();
     MissionUtils.Console.print(
-      "<할인 전 총주문 금액>\n" +
+      MESSAGE.OUTPUT_BEFORE_DISCOUNT_TOTALMONEY +
         promotion.calculateTotalPrice(menus) +
-        "원" +
-        "\n"
+        MESSAGE.OUTPUT_MONEY_UNIT +
+        MESSAGE.ENTER
     );
   },
 
   readPromotionItems(menus) {
     const promotion = new Promotion();
     MissionUtils.Console.print(
-      "<증정 메뉴>\n" + promotion.applyPromotionItems(menus) + "\n"
+      MESSAGE.OUTPUT_APPLY_MENU +
+        promotion.applyPromotionItems(menus) +
+        MESSAGE.ENTER
     );
   },
 
-  async readPromotions(discounts) {
-    const discountsData = await discounts;
-    MissionUtils.Console.print("<혜택 내역>\n");
-    for (const [key, value] of Object.entries(discountsData)) {
-      if (FormatPrice.replaceFormatPrice(value) !== 0 && value !== "없음") {
+  async readPromotions(discounts, noDiscounts) {
+    if (noDiscounts) {
+      MissionUtils.Console.print(MESSAGE.BENEFIT_SERVICE_NOTHING);
+      return;
+    }
+
+    MissionUtils.Console.print(MESSAGE.BENEFIT_SERVICE);
+    for (const [key, value] of Object.entries(discounts)) {
+      if (
+        FormatPrice.replaceFormatPrice(value) !== 0 &&
+        value !== MESSAGE.NOTHING
+      ) {
         const formattedValue = `-${value}원`;
-        MissionUtils.Console.print(`${key}: ${formattedValue}`);
+        MissionUtils.Console.print(`${key}: ${formattedValue}\n`);
       }
     }
   },
 
   readTotalDiscount(totalDiscount) {
-    MissionUtils.Console.print("<총혜택 금액>");
+    MissionUtils.Console.print(MESSAGE.TOTAL_DISCOUNT_MONEY);
     if (totalDiscount === 0) {
-      MissionUtils.Console.print("0원\n");
+      MissionUtils.Console.print(MESSAGE.NOTHING_MONEY);
     } else {
       MissionUtils.Console.print(
         `-${FormatPrice.formatPrice(totalDiscount)}원\n`
@@ -60,19 +71,22 @@ const OutputView = {
   },
 
   readAfterDiscountPrice(price, totalDiscount) {
-    MissionUtils.Console.print("<할인 후 예상 결제 금액>");
+    MissionUtils.Console.print(MESSAGE.OUTPUT_AFTER_DISCOUNT_PRICE);
     if (totalDiscount > 0) {
-      MissionUtils.Console.print(FormatPrice.formatPrice(price) + "원\n");
+      MissionUtils.Console.print(
+        FormatPrice.formatPrice(price) + MESSAGE.OUTPUT_MONEY_UNIT_ENTER
+      );
     } else {
       MissionUtils.Console.print(
-        FormatPrice.formatPrice(price - totalDiscount) + "원\n"
+        FormatPrice.formatPrice(price - totalDiscount) +
+          MESSAGE.OUTPUT_MONEY_UNIT_ENTER
       );
     }
   },
 
   readDiscountBadge(badge) {
-    MissionUtils.Console.print("<12월 이벤트 배지>");
-    MissionUtils.Console.print(badge + "\n");
+    MissionUtils.Console.print(MESSAGE.OUTPUT_EVENT_BADGE);
+    MissionUtils.Console.print(badge + MESSAGE.ENTER);
   },
 };
 

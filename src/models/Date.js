@@ -9,9 +9,7 @@ class DateManager {
     let inputDateValid = false;
 
     while (!inputDateValid) {
-      date = await MissionUtils.Console.readLineAsync(
-        "12월 중 식당 예상 방문 날짜는 언제인가요? (숫자만 입력해 주세요!)\n"
-      );
+      date = await MissionUtils.Console.readLineAsync(MESSAGE.INPUT_DATE_GUIDE);
 
       try {
         Validator.validateDate(date);

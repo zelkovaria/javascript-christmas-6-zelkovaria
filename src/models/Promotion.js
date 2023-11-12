@@ -3,6 +3,7 @@ import MainCourse from "../models/MainCourse.js";
 import Dessert from "../models/Dessert.js";
 import Beverage from "../models/Beverage.js";
 import FormatPrice from "../utils/FormatPrice.js";
+import { CONSTANTS } from "../constants/constants.js";
 
 class Promotion {
   constructor() {
@@ -26,21 +27,27 @@ class Promotion {
     const beforeDiscountPrice = FormatPrice.replaceFormatPrice(
       this.calculateTotalPrice(menus)
     );
-    const validItems = "샴페인 1개";
-    const notValidItems = "없음";
+    const validItems = CONSTANTS.APPLY_CHAMPAGNE;
+    const notValidItems = CONSTANTS.APPLY_NOTHING;
 
-    if (beforeDiscountPrice >= 120000) {
+    if (beforeDiscountPrice >= CONSTANTS.APPLY_EVENT_MONEY_LINE) {
       return validItems;
     }
     return notValidItems;
   }
 
   dDayDiscount(date) {
-    if (date >= 1 && date <= 25) {
-      return 1000 + (date - 1) * 100;
+    if (
+      date >= CONSTANTS.DDAY_DISCOUNT_START &&
+      date <= CONSTANTS.DDAY_DSICOUNT_END
+    ) {
+      return (
+        CONSTANTS.DDAY_DISCOUNT_START_MONEY +
+        (date - 1) * CONSTANTS.DDAY_DISCOUNT_INCREASE_MONEY
+      );
     }
-    if (date > 25) {
-      return 3400;
+    if (date > CONSTANTS.DDAY_DSICOUNT_END) {
+      return CONSTANTS.DDAY_DISCOUNT_TOTAL_MONEY;
     }
   }
 
@@ -55,7 +62,7 @@ class Promotion {
         (total, dessert) => total + dessert.quantity,
         0
       );
-      weekdayDiscount = totalDessertQuantity * 2023;
+      weekdayDiscount = totalDessertQuantity * CONSTANTS.DISCOUNT_MONEY;
     }
     return weekdayDiscount;
   }
@@ -69,14 +76,14 @@ class Promotion {
         (total, maincourse) => total + maincourse.quantity,
         0
       );
-      weekendDiscount = totalMainCourseQuantity * 2023;
+      weekendDiscount = totalMainCourseQuantity * CONSTANTS.DISCOUNT_MONEY;
     }
     return weekendDiscount;
   }
 
   applyDiscount(menus) {
-    if (this.applyPromotionItems(menus) === "샴페인 1개") {
-      return 25000;
+    if (this.applyPromotionItems(menus) === CONSTANTS.APPLY_CHAMPAGNE) {
+      return CONSTANTS.CHAMPAGNE_PRICE;
     }
     return 0;
   }
@@ -86,7 +93,7 @@ class Promotion {
     const specialDay = [3, 10, 17, 24, 25, 31];
 
     if (specialDay.includes(parseInt(date, 10))) {
-      specailDayDiscount = 1000;
+      specailDayDiscount = CONSTANTS.SPECIALDAY_DISCOUNT;
     }
 
     return specailDayDiscount;
@@ -97,7 +104,7 @@ class Promotion {
       this.calculateTotalPrice(menus)
     );
 
-    if (beforeDiscountPrice < 10000) {
+    if (beforeDiscountPrice < CONSTANTS.DISCOUNT_EVENT_MONELY_LINE) {
       return 0;
     }
 
@@ -107,8 +114,8 @@ class Promotion {
       this.weekendDiscount(date, menus) +
       this.specailDiscount(date);
 
-    if (this.applyPromotionItems(menus) === "샴페인 1개") {
-      totalDiscount += 25000;
+    if (this.applyPromotionItems(menus) === CONSTANTS.CHAMPAGNE_PRICE) {
+      totalDiscount += CONSTANTS.CHAMPAGNE_PRICE;
     }
 
     return totalDiscount;
@@ -120,8 +127,8 @@ class Promotion {
     );
     let totalDiscount = this.calculateTotalDiscount(date, menus);
 
-    if (this.applyPromotionItems(menus) === "샴페인 1개") {
-      totalDiscount -= 25000;
+    if (this.applyPromotionItems(menus) === CONSTANTS.CHAMPAGNE_PRICE) {
+      totalDiscount -= CONSTANTS.CHAMPAGNE_PRICE;
     }
 
     return totalPrice - totalDiscount;
@@ -130,16 +137,16 @@ class Promotion {
   getDiscountBadge(date, menus) {
     const totalDiscount = this.calculateTotalDiscount(date, menus);
 
-    if (totalDiscount >= 20000) {
-      return "산타";
+    if (totalDiscount >= CONSTANTS.BADEGE_SANTA_MONEY) {
+      return CONSTANTS.BADGE_SANTA;
     }
-    if (totalDiscount >= 10000) {
-      return "트리";
+    if (totalDiscount >= CONSTANTS.BADGE_TREE_MONEY) {
+      return CONSTANTS.BADGE_TREE;
     }
-    if (totalDiscount >= 5000) {
-      return "별";
+    if (totalDiscount >= CONSTANTS.BADGE_STAR_MONEY) {
+      return CONSTANTS.BADGE_STAR;
     }
-    return "없음";
+    return CONSTANTS.BADGE_NOTHING;
   }
 }
 
