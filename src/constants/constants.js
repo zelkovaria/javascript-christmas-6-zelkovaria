@@ -20,4 +20,9 @@ export const CONSTANTS = Object.freeze({
   BADGE_STAR_MONEY: 5000,
   BADGE_STAR: "별",
   BADGE_NOTHING: "없음",
+
+  PROMOTION_D_DAY: "크리스마스 디데이 할인",
+  PROMOTION_WEEKDAY: "평일 할인",
+  PROMOTION_WEKKEND: "주말 할인",
+  PROMOTION_SPECAIL: "특별 할인",
 });
