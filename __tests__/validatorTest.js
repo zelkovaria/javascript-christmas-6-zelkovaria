@@ -25,4 +25,10 @@ describe("ValidateTest", () => {
   test("올바른 형식의 주문은 예외를 발생시키지 않는다", () => {
     expect(() => Validator.validateMenuOrder("티본스테이크-2")).not.toThrow();
   });
+
+  test("잘못된 구분자를 사용한 주문은 예외가 발생한다", () => {
+    expect(() => Validator.validateMenuOrder("티본스테이크.2")).toThrow(
+      MESSAGE.INVALID_MENU_ORDER
+    );
+  });
 });
