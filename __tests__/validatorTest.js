@@ -16,4 +16,8 @@ describe("ValidateTest", () => {
       MESSAGE.INVALID_DATE
     );
   });
+
+  test("입력한 날짜는 공백이 들어가면 예외가 발생한다", () => {
+    expect(() => Validator.validateDate("2 3")).toThrow(MESSAGE.INVALID_DATE);
+  });
 });
