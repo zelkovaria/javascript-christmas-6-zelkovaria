@@ -59,6 +59,12 @@ class Validator {
       throw new Error(MESSAGE.INVALID_BEVERAGE_ONLY);
     }
   }
+
+  static validateMenuExist(menus, promotion) {
+    if (!promotion.isMenuExist(menus)) {
+      throw new Error(MESSAGE.INVALID_MENU_ORDER);
+    }
+  }
 }
 
 export default Validator;

@@ -20,6 +20,7 @@ class ChristmasController {
     const menus = await this.#getInputMenu();
 
     Validator.validateOnlyBeverage(menus, this.promotion);
+    Validator.validateMenuExist(menus, this.promotion);
 
     this.#outputOrderDetails(nowDay, menus);
   }

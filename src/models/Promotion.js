@@ -165,6 +165,16 @@ class Promotion {
 
     return hasBeverage && !hasAppetizer && !hasMainCourse && !hasDessert;
   }
+
+  isMenuExist(menus) {
+    return menus.every(
+      (menu) =>
+        this.appetizer.isMenuAvailable(menu.name) ||
+        this.maincourse.isMenuAvailable(menu.name) ||
+        this.dessert.isMenuAvailable(menu.name) ||
+        this.beverage.isMenuAvailable(menu.name)
+    );
+  }
 }
 
 export default Promotion;
