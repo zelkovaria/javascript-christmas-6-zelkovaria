@@ -3,23 +3,17 @@ import { MESSAGE } from "../src/constants/message";
 
 describe("ValidateTest", () => {
   //validateDate test
-  test("입력한 날짜는 특수문자가 들어가면 예외가 발생한다.", () => {
-    expect(() => Validator.validateDate("3!@")).toThrow(MESSAGE.INVALID_DATE);
-  });
-
-  test("입력한 날짜는 영어가 들어가면 예외가 발생한다", () => {
-    expect(() => Validator.validateDate("3a")).toThrow(MESSAGE.INVALID_DATE);
-  });
-
-  test("입력한 날짜는 한글이 들어가면 예외가 발생한다", () => {
-    expect(() => Validator.validateDate("3가나다")).toThrow(
-      MESSAGE.INVALID_DATE
-    );
-  });
-
-  test("입력한 날짜는 공백이 들어가면 예외가 발생한다", () => {
-    expect(() => Validator.validateDate("2 3")).toThrow(MESSAGE.INVALID_DATE);
-  });
+  test.each([
+    ["3!@", MESSAGE.INVALID_DATE],
+    ["3a", MESSAGE.INVALID_DATE],
+    ["3가나다", MESSAGE.INVALID_DATE],
+    ["2 3", MESSAGE.INVALID_DATE],
+  ])(
+    "입력한 날짜는 정수 외에 문자가 포함되어 있으면 예외가 발생한다",
+    (input, expected) => {
+      expect(() => Validator.validateDate(input)).toThrow(expected);
+    }
+  );
 
   //validateMenuOrder
   test("올바른 형식의 주문은 예외를 발생시키지 않는다", () => {
