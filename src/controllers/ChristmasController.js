@@ -66,7 +66,10 @@ class ChristmasController {
         Validator.totalMenuValidator(orders);
         menuOrders = orders.map((order) => {
           const [name, quantity] = MenuParser.divideMenuSet(order);
-          return { name, quantity: parseInt(quantity, 10) };
+          return {
+            name,
+            quantity: parseInt(quantity, CONSTANTS.DECIMAL_RADIX),
+          };
         });
 
         inputValid = true;

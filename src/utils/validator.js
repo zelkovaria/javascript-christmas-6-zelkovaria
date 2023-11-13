@@ -10,7 +10,7 @@ class Validator {
       throw new Error(MESSAGE.INVALID_DATE);
     }
 
-    let inputDate = parseInt(date, 10);
+    let inputDate = parseInt(date, CONSTANTS.DECIMAL_RADIX);
     const isOutOfRange =
       inputDate > CONSTANTS.MAX_DATE || inputDate < CONSTANTS.MIN_DATE;
 
@@ -23,14 +23,19 @@ class Validator {
     if (
       MenuParser.divideMenuSet(orders).length !== 2 ||
       !MenuParser.divideMenuSet(orders)[1] ||
-      isNaN(parseInt(MenuParser.divideMenuSet(orders)[1], 10))
+      isNaN(
+        parseInt(MenuParser.divideMenuSet(orders)[1], CONSTANTS.DECIMAL_RADIX)
+      )
     ) {
       throw new Error(MESSAGE.INVALID_MENU_ORDER);
     }
   }
 
   static validateMenuQuantity(orders) {
-    if (parseInt(MenuParser.divideMenuSet(orders)[1], 10) <= 0) {
+    if (
+      parseInt(MenuParser.divideMenuSet(orders)[1], CONSTANTS.DECIMAL_RADIX) <=
+      0
+    ) {
       throw new Error(MESSAGE.INVALID_MENU_ORDER);
     }
   }

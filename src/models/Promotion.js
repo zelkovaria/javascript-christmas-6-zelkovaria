@@ -56,7 +56,7 @@ class Promotion {
     const weekday = [
       3, 4, 5, 6, 7, 10, 11, 12, 13, 14, 17, 18, 19, 20, 21, 24, 25, 31,
     ];
-    if (weekday.includes(parseInt(date, 10))) {
+    if (weekday.includes(parseInt(date, CONSTANTS.DECIMAL_RADIX))) {
       const orderedDesserts = this.dessert.dessertProcessOrder(menus);
       const totalDessertQuantity = orderedDesserts.reduce(
         (total, dessert) => total + dessert.quantity,
@@ -70,7 +70,7 @@ class Promotion {
   weekendDiscount(date, menus) {
     let weekendDiscount = 0;
     const weekend = [1, 2, 8, 9, 15, 16, 22, 23, 29, 30];
-    if (weekend.includes(parseInt(date, 10))) {
+    if (weekend.includes(parseInt(date, CONSTANTS.DECIMAL_RADIX))) {
       const orderedMainCourse = this.maincourse.mainCourseProcessOrder(menus);
       const totalMainCourseQuantity = orderedMainCourse.reduce(
         (total, maincourse) => total + maincourse.quantity,
@@ -92,7 +92,7 @@ class Promotion {
     let specailDayDiscount = 0;
     const specialDay = [3, 10, 17, 24, 25, 31];
 
-    if (specialDay.includes(parseInt(date, 10))) {
+    if (specialDay.includes(parseInt(date, CONSTANTS.DECIMAL_RADIX))) {
       specailDayDiscount = CONSTANTS.SPECIALDAY_DISCOUNT;
     }
 

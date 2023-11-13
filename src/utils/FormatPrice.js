@@ -1,3 +1,5 @@
+import { CONSTANTS } from "../constants/constants";
+
 class FormatPrice {
   static formatPrice(price) {
     return new Intl.NumberFormat("ko-KR", {
@@ -6,7 +8,7 @@ class FormatPrice {
   }
 
   static replaceFormatPrice(price) {
-    return parseInt(price.replace(/,/g, ""), 10);
+    return parseInt(price.replace(/,/g, ""), CONSTANTS.DECIMAL_RADIX);
   }
 }
 
