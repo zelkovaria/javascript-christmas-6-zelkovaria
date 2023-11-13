@@ -26,27 +26,12 @@ describe("ValidateTest", () => {
     expect(() => Validator.validateMenuOrder("티본스테이크-2")).not.toThrow();
   });
 
-  test("잘못된 구분자를 사용한 주문은 예외가 발생한다", () => {
-    expect(() => Validator.validateMenuOrder("티본스테이크.2")).toThrow(
-      MESSAGE.INVALID_MENU_ORDER
-    );
-  });
-
-  test("잘못된 구분자를 사용한 주문은 예외가 발생한다", () => {
-    expect(() => Validator.validateMenuOrder("티본스테이크a2")).toThrow(
-      MESSAGE.INVALID_MENU_ORDER
-    );
-  });
-
-  test("잘못된 구분자를 사용한 주문은 예외가 발생한다", () => {
-    expect(() => Validator.validateMenuOrder("티본스테이크크크2")).toThrow(
-      MESSAGE.INVALID_MENU_ORDER
-    );
-  });
-
-  test("잘못된 구분자를 사용한 주문은 예외가 발생한다", () => {
-    expect(() => Validator.validateMenuOrder("티본스테이크 2")).toThrow(
-      MESSAGE.INVALID_MENU_ORDER
-    );
+  test.each([
+    ["티본스테이크.2", MESSAGE.INVALID_MENU_ORDER],
+    ["티본스테이크a2", MESSAGE.INVALID_MENU_ORDER],
+    ["티본스테이크크크2", MESSAGE.INVALID_MENU_ORDER],
+    ["티본스테이크 2", MESSAGE.INVALID_MENU_ORDER],
+  ])("잘못된 구분자를 사용한 주문은 예외가 발생한다", (input, expected) => {
+    expect(() => Validator.validateMenuOrder(input)).toThrow(expected);
   });
 });
