@@ -1,7 +1,6 @@
 import { MESSAGE } from "../constants/message.js";
 import { CONSTANTS } from "../constants/constants.js";
 import MenuParser from "../utils/MenuParser.js";
-import Promotion from "../models/Promotion.js";
 
 class Validator {
   static validateDate(date) {

@@ -1,11 +1,10 @@
+import { DESSERT_ITEMS } from "../constants/constants";
+
 class Dessert {
   #items;
 
   constructor() {
-    this.#items = [
-      { name: "초코케이크", price: 15_000 },
-      { name: "아이스크림", price: 5_000 },
-    ];
+    this.#items = DESSERT_ITEMS;
   }
 
   dessertProcessOrder(menus) {

@@ -1,12 +1,10 @@
+import { APPETIZER_ITEMS } from "../constants/constants";
+
 class Appetizer {
   #items;
 
   constructor() {
-    this.#items = [
-      { name: "양송이수프", price: 6_000 },
-      { name: "타파스", price: 5_500 },
-      { name: "시저샐러드", price: 8_000 },
-    ];
+    this.#items = APPETIZER_ITEMS;
   }
 
   appetizerProcessOrder(menus) {
