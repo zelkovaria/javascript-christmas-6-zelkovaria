@@ -37,4 +37,10 @@ describe("ValidateTest", () => {
       MESSAGE.INVALID_MENU_ORDER
     );
   });
+
+  test("잘못된 구분자를 사용한 주문은 예외가 발생한다", () => {
+    expect(() => Validator.validateMenuOrder("티본스테이크크크2")).toThrow(
+      MESSAGE.INVALID_MENU_ORDER
+    );
+  });
 });
