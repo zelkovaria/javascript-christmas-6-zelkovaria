@@ -1,17 +1,10 @@
 import { MissionUtils } from "@woowacourse/mission-utils";
-import InputView from "./InputView.js";
 
 import Promotion from "../models/Promotion.js";
 import FormatPrice from "../utils/FormatPrice.js";
 import { MESSAGE } from "../constants/message.js";
-import { CONSTANTS } from "../constants/constants.js";
 
 const OutputView = {
-  async readDate() {
-    const date = await InputView.readDate();
-    MissionUtils.Console.print(MESSAGE.OUTPUT_USER_DATE);
-  },
-
   readInputMenu(date, menuOrders) {
     const formattedOrders = menuOrders
       .map((order) => `${order.name} ${order.quantity}개`)
