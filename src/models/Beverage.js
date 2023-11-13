@@ -1,4 +1,4 @@
-import { BEVERAGE_ITEMS } from "../constants/constants";
+import { BEVERAGE_ITEMS } from "../constants/constants.js";
 
 class Beverage {
   #items;

@@ -1,4 +1,4 @@
-import { DESSERT_ITEMS } from "../constants/constants";
+import { DESSERT_ITEMS } from "../constants/constants.js";
 
 class Dessert {
   #items;

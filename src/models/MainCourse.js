@@ -1,4 +1,4 @@
-import { MAIN_COURSE_ITEMS } from "../constants/constants";
+import { MAIN_COURSE_ITEMS } from "../constants/constants.js";
 
 class MainCourse {
   #items;

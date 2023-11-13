@@ -1,4 +1,4 @@
-import { APPETIZER_ITEMS } from "../constants/constants";
+import { APPETIZER_ITEMS } from "../constants/constants.js";
 
 class Appetizer {
   #items;
