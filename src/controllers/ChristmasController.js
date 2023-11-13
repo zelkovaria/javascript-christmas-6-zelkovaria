@@ -21,6 +21,10 @@ class ChristmasController {
 
     Validator.validateOnlyBeverage(menus, this.promotion);
 
+    this.#outputOrderDetails(nowDay, menus);
+  }
+
+  #outputOrderDetails(nowDay, menus) {
     OutputView.readInputMenu(nowDay, menus);
     OutputView.readTotalPrice(menus);
     OutputView.readPromotionItems(menus);
@@ -28,13 +32,24 @@ class ChristmasController {
     const totalDiscount = this.#totalDiscountPrice(nowDay, menus);
     OutputView.readTotalDiscount(totalDiscount);
 
+    this.#outputPromotions(nowDay, menus, totalDiscount);
+    this.#outputAfterDiscountPrice(nowDay, menus, totalDiscount);
+    this.#outputDiscountBadge(nowDay, menus);
+  }
+
+  async #outputPromotions(nowDay, menus, totalDiscount) {
     const discount = await this.#promotionTypes(nowDay, menus);
     OutputView.readPromotions(discount, totalDiscount === 0);
+  }
+
+  #outputAfterDiscountPrice(nowDay, menus, totalDiscount) {
     OutputView.readAfterDiscountPrice(
       this.promotion.afterDiscountPrice(nowDay, menus),
       totalDiscount
     );
+  }
 
+  #outputDiscountBadge(nowDay, menus) {
     const badge = this.promotion.getDiscountBadge(nowDay, menus);
     OutputView.readDiscountBadge(badge);
   }
