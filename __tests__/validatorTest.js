@@ -20,4 +20,9 @@ describe("ValidateTest", () => {
   test("입력한 날짜는 공백이 들어가면 예외가 발생한다", () => {
     expect(() => Validator.validateDate("2 3")).toThrow(MESSAGE.INVALID_DATE);
   });
+
+  //validateMenuOrder
+  test("올바른 형식의 주문은 예외를 발생시키지 않는다", () => {
+    expect(() => Validator.validateMenuOrder("티본스테이크-2")).not.toThrow();
+  });
 });
