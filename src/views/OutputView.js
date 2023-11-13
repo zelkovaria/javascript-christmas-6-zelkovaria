@@ -16,7 +16,7 @@ const OutputView = {
     const formattedOrders = menuOrders
       .map((order) => `${order.name} ${order.quantity}개`)
       .join("\n");
-    MissionUtils.Console.print(MESSAGE.OUTPUT_EVENT_PREVIEW);
+    MissionUtils.Console.print(MESSAGE.OUTPUT_EVENT_PREVIEW(date));
     MissionUtils.Console.print(
       MESSAGE.OUTPUT_ORDERED_MENU + formattedOrders + "\n"
     );

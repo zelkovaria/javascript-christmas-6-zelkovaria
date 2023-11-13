@@ -8,8 +8,8 @@ export const MESSAGE = Object.freeze({
     "주문하실 메뉴를 메뉴와 개수를 알려 주세요. (e.g. 해산물파스타-2,레드와인-1,초코케이크-1)\n",
 
   OUTPUT_USER_DATE: "입력날짜 {date}",
-  OUTPUT_EVENT_PREVIEW:
-    "12월 {date}일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!\n",
+  OUTPUT_EVENT_PREVIEW: (date) =>
+    `12월 ${date}일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!`,
   OUTPUT_ORDERED_MENU: "<주문 메뉴>\n",
   OUTPUT_BEFORE_DISCOUNT_TOTALMONEY: "<할인 전 총주문 금액>\n",
   OUTPUT_AFTER_DISCOUNT_PRICE: "<할인 후 예상 결제 금액>",
