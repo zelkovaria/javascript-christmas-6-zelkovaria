@@ -56,7 +56,7 @@ class Validator {
 
   static validateOnlyBeverage(menus, promotion) {
     if (promotion.isOnlyBeverageOrder(menus)) {
-      throw new Error("[ERROR] 음료만 주문할 수 없습니다.");
+      throw new Error(MESSAGE.INVALID_BEVERAGE_ONLY);
     }
   }
 }

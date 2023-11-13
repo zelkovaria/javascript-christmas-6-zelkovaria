@@ -1,6 +1,7 @@
 export const MESSAGE = Object.freeze({
   INVALID_DATE: "[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.",
   INVALID_MENU_ORDER: "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.",
+  INVALID_BEVERAGE_ONLY: "[ERROR] 음료만 주문할 수 없습니다.",
 
   INPUT_DATE_GUIDE:
     "12월 중 식당 예상 방문 날짜는 언제인가요? (숫자만 입력해 주세요!)\n",
