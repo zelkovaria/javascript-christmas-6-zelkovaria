@@ -261,4 +261,12 @@ describe("PromotionTest", () => {
     ];
     expect(promotion.isMenuExist(menus)).toBeTruthy();
   });
+
+  test("존재하지 않는 메뉴가 포함된 경우 false를 반환한다", () => {
+    const menus = [
+      { name: "티본스테이크", quantity: 1 },
+      { name: "제육덮밥", quantity: 1 },
+    ];
+    expect(promotion.isMenuExist(menus)).toBeFalsy();
+  });
 });
