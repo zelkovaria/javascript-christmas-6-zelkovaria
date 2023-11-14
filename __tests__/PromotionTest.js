@@ -149,4 +149,11 @@ describe("PromotionTest", () => {
     const date = 29;
     expect(promotion.specailDiscount(date)).toBe(0);
   });
+
+  test("할인전 금액이 1만원 이하인 경우 할인혜택이 없다", () => {
+    const promotion = new Promotion();
+    const date = 24;
+    const menus = [{ name: "양송이수프", quantity: 1 }];
+    expect(promotion.calculateTotalDiscount(date, menus)).toBe(0);
+  });
 });
