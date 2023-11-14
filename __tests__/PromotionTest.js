@@ -160,4 +160,14 @@ describe("PromotionTest", () => {
     const expectedPrice = 6000;
     expect(promotion.afterDiscountPrice(date, menus)).toBe(expectedPrice);
   });
+
+  test("평일날 할인 적용시 12만원 미만인 경우 샴페인을 미제공한다", () => {
+    const date = 5;
+    const menus = [
+      { name: "티본스테이크", quantity: 1 },
+      { name: "초코케이크", quantity: 2 },
+    ];
+    const expectedPrice = 79554;
+    expect(promotion.afterDiscountPrice(date, menus)).toBe(expectedPrice);
+  });
 });
