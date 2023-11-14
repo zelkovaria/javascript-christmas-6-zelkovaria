@@ -31,4 +31,12 @@ describe("AppetizerTest", () => {
 
     expect(totalPrice).toBe(expectedPrice);
   });
+
+  test("입력받은 메뉴가 에피타이저 메뉴에 존재하는지 확인한다", () => {
+    const existingItem = APPETIZER_ITEMS[0].name;
+    const nonExistingItem = "존재하지 않는 메뉴";
+
+    expect(appetizer.isMenuAvailable(existingItem)).toBe(true);
+    expect(appetizer.isMenuAvailable(nonExistingItem)).toBe(false);
+  });
 });
