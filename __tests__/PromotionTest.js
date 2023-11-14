@@ -29,4 +29,12 @@ describe("PromotionTest", () => {
       CONSTANTS.APPLY_CHAMPAGNE
     );
   });
+
+  test("할인 전 총 주문 금액이 프로모션 적용 기준을 넘지 않으면 아무것도 증정하지 않는다", () => {
+    const menus = [
+      { name: "해물파스타", quantity: 1 },
+      { name: "제로콜라", quantity: 2 },
+    ];
+    expect(promotion.applyPromotionItems(menus)).toBe(CONSTANTS.APPLY_NOTHING);
+  });
 });
