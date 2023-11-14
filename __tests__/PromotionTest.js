@@ -118,4 +118,14 @@ describe("PromotionTest", () => {
     const expectedDiscount = 0;
     expect(promotion.weekendDiscount(date, menus)).toBe(expectedDiscount);
   });
+
+  test("샴페인 증정 상황시 샴페인 가격을 반환한다", () => {
+    const promotion = new Promotion();
+    const menus = [
+      { name: "티본스테이크", quantity: 2 },
+      { name: "해산물파스타", quantity: 1 },
+      { name: "제로콜라", quantity: 1 },
+    ];
+    expect(promotion.applyDiscount(menus)).toBe(25000);
+  });
 });
