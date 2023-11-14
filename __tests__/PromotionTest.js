@@ -38,10 +38,17 @@ describe("PromotionTest", () => {
     expect(promotion.applyPromotionItems(menus)).toBe(CONSTANTS.APPLY_NOTHING);
   });
 
-  test("d-Day할인은 12/1~12/25사이 기간만 100원씩 증가된다", () => {
+  test("d-Day할인은 12/1~12/25사이 기간동안 1000원부터 100원씩 증가된다", () => {
     const promotion = new Promotion();
     const date = 16;
     const expectedDiscount = 2500;
+    expect(promotion.dDayDiscount(date)).toBe(expectedDiscount);
+  });
+
+  test("d-Day할인은 12/25이후 최대 할인 금액이 3400원이다", () => {
+    const promotion = new Promotion();
+    const date = 27;
+    const expectedDiscount = 3400;
     expect(promotion.dDayDiscount(date)).toBe(expectedDiscount);
   });
 });
