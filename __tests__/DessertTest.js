@@ -31,4 +31,12 @@ describe("DessertTest", () => {
 
     expect(totalPrice).toBe(expectedPrice);
   });
+
+  test("입력받은 메뉴가 디저트 메뉴에 존재하는지 확인한다", () => {
+    const existingItem = DESSERT_ITEMS[0].name;
+    const nonExistingItem = "존재하지 않는 메뉴";
+
+    expect(dessert.isMenuAvailable(existingItem)).toBe(true);
+    expect(dessert.isMenuAvailable(nonExistingItem)).toBe(false);
+  });
 });
