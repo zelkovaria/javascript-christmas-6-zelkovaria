@@ -252,4 +252,13 @@ describe("PromotionTest", () => {
     ];
     expect(promotion.isOnlyBeverageOrder(menus)).toBeFalsy();
   });
+
+  test("모든 메뉴가 존재할 경우 true를 반환한다", () => {
+    const menus = [
+      { name: "티본스테이크", quantity: 1 },
+      { name: "바비큐립", quantity: 1 },
+      { name: "초코케이크", quantity: 1 },
+    ];
+    expect(promotion.isMenuExist(menus)).toBeTruthy();
+  });
 });
