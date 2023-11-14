@@ -19,4 +19,16 @@ describe("MainCourseTest", () => {
       { name: MAIN_COURSE_ITEMS[0].name, quantity: 1 },
     ]);
   });
+
+  test("메뉴에 존재하는 메인코스의 총 주문 가격을 계산한다", () => {
+    const menus = [
+      { name: MAIN_COURSE_ITEMS[0].name, quantity: 2 },
+      { name: MAIN_COURSE_ITEMS[1].name, quantity: 3 },
+    ];
+    const totalPrice = maincourse.calculateMainCourseTotalPrice(menus);
+    const expectedPrice =
+      MAIN_COURSE_ITEMS[0].price * 2 + MAIN_COURSE_ITEMS[1].price * 3;
+
+    expect(totalPrice).toBe(expectedPrice);
+  });
 });

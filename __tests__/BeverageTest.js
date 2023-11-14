@@ -20,7 +20,7 @@ describe("BeverageTest", () => {
     ]);
   });
 
-  test("메뉴에 존재하는 음료의 총 가격을 계산한다", () => {
+  test("메뉴에 존재하는 음료의 총 주문 가격을 계산한다", () => {
     const menus = [
       { name: BEVERAGE_ITEMS[0].name, quantity: 3 },
       { name: BEVERAGE_ITEMS[1].name, quantity: 2 },
