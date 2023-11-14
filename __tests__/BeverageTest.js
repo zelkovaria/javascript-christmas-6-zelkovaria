@@ -31,4 +31,12 @@ describe("BeverageTest", () => {
 
     expect(totalPrice).toBe(expectedPrice);
   });
+
+  test("입력받은 메뉴가 음료 메뉴에 존재하는지 확인한다", () => {
+    const existingItem = BEVERAGE_ITEMS[0].name;
+    const nonExistingItem = "존재하지 않는 메뉴;";
+
+    expect(beverage.isMenuAvailable(existingItem)).toBe(true);
+    expect(beverage.isMenuAvailable(nonExistingItem)).toBe(false);
+  });
 });
