@@ -236,8 +236,12 @@ describe("PromotionTest", () => {
   });
 
   test("주문된 메뉴가 음료만 있으면 true를 반환한다", () => {
-    const promotion = new Promotion();
     const menus = [{ name: "제로콜라", quantity: 2 }];
     expect(promotion.isOnlyBeverageOrder(menus)).toBeTruthy();
+  });
+
+  test("주문된 메뉴에 음료 이외의 메뉴가 있으면 false를 반환한다", () => {
+    const menus = [{ name: "티본스테이크", quantity: 1 }];
+    expect(promotion.isOnlyBeverageOrder(menus)).toBeFalsy();
   });
 });
