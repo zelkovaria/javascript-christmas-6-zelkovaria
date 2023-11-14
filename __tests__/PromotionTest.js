@@ -234,4 +234,10 @@ describe("PromotionTest", () => {
     ];
     expect(promotion.getDiscountBadge(date, menus)).toBe("산타");
   });
+
+  test("주문된 메뉴가 음료만 있으면 true를 반환한다", () => {
+    const promotion = new Promotion();
+    const menus = [{ name: "제로콜라", quantity: 2 }];
+    expect(promotion.isOnlyBeverageOrder(menus)).toBeTruthy();
+  });
 });
