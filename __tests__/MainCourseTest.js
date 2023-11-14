@@ -31,4 +31,12 @@ describe("MainCourseTest", () => {
 
     expect(totalPrice).toBe(expectedPrice);
   });
+
+  test("입력받은 메뉴가 메인코스 메뉴에 존재하는지 확인한다", () => {
+    const existingItem = MAIN_COURSE_ITEMS[0].name;
+    const nonExistingItem = "존재하지 않는 메뉴";
+
+    expect(maincourse.isMenuAvailable(existingItem)).toBe(true);
+    expect(maincourse.isMenuAvailable(nonExistingItem)).toBe(false);
+  });
 });
