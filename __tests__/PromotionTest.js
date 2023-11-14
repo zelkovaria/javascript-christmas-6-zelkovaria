@@ -106,4 +106,16 @@ describe("PromotionTest", () => {
     const expectedDiscount = 0;
     expect(promotion.weekendDiscount(date, menus)).toBe(expectedDiscount);
   });
+
+  test("주말 할인은 평일엔 할인하지 않는다", () => {
+    const promotion = new Promotion();
+    const date = 25;
+    const menus = [
+      { name: "티본스테이크", quantity: 1 },
+      { name: "해산물파스타", quantity: 1 },
+      { name: "제로콜라", quantity: 1 },
+    ];
+    const expectedDiscount = 0;
+    expect(promotion.weekendDiscount(date, menus)).toBe(expectedDiscount);
+  });
 });
