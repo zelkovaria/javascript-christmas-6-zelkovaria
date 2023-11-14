@@ -62,4 +62,15 @@ describe("PromotionTest", () => {
     const expectedDiscount = 4046;
     expect(promotion.weekdayDiscount(date, menus)).toBe(expectedDiscount);
   });
+
+  test("평일 할인은 1만원 이상 주문시 일~금요일 기준 디저트 메뉴1개당 2023원 할인한다", () => {
+    const promotion = new Promotion();
+    const date = 10;
+    const menus = [
+      { name: "해물파스타", quantity: 1 },
+      { name: "제로콜라", quantity: 2 },
+    ];
+    const expectedDiscount = 0;
+    expect(promotion.weekdayDiscount(date, menus)).toBe(expectedDiscount);
+  });
 });
