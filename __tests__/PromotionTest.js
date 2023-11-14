@@ -190,4 +190,14 @@ describe("PromotionTest", () => {
     const expectedPrice = 80577;
     expect(promotion.afterDiscountPrice(date, menus)).toBe(expectedPrice);
   });
+
+  test("주말날 할인 적용시 12만원 이상인 경우 샴페인을 제공한다", () => {
+    const date = 15;
+    const menus = [
+      { name: "티본스테이크", quantity: 3 },
+      { name: "초코케이크", quantity: 1 },
+    ];
+    const expectedPrice = 171531;
+    expect(promotion.afterDiscountPrice(date, menus)).toBe(expectedPrice);
+  });
 });
