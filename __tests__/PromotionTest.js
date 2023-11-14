@@ -244,4 +244,12 @@ describe("PromotionTest", () => {
     const menus = [{ name: "티본스테이크", quantity: 1 }];
     expect(promotion.isOnlyBeverageOrder(menus)).toBeFalsy();
   });
+
+  test("주문된 메뉴에 음료와 다른 메뉴가 있으면 false를 반환한다", () => {
+    const menus = [
+      { name: "티본스테이크", quantity: 1 },
+      { name: "제로콜라", quantity: 1 },
+    ];
+    expect(promotion.isOnlyBeverageOrder(menus)).toBeFalsy();
+  });
 });
