@@ -95,4 +95,15 @@ describe("PromotionTest", () => {
     const expectedDiscount = 2023;
     expect(promotion.weekendDiscount(date, menus)).toBe(expectedDiscount);
   });
+
+  test("주말 할인은 1만원 이상 주문시 금~토요일 기준 메인 메뉴가 없으면 할인이 없다", () => {
+    const promotion = new Promotion();
+    const date = 15;
+    const menus = [
+      { name: "초코케이크", quantity: 3 },
+      { name: "제로콜라", quantity: 1 },
+    ];
+    const expectedDiscount = 0;
+    expect(promotion.weekendDiscount(date, menus)).toBe(expectedDiscount);
+  });
 });
