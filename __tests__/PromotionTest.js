@@ -224,4 +224,14 @@ describe("PromotionTest", () => {
     ];
     expect(promotion.getDiscountBadge(date, menus)).toBe("트리");
   });
+
+  test("할인 금액이 2만원 이상인 경우 증정 배지는 '산타'를 반환한다", () => {
+    const date = 15;
+    const menus = [
+      { name: "티본스테이크", quantity: 5 },
+      { name: "바비큐립", quantity: 5 },
+      { name: "초코케이크", quantity: 2 },
+    ];
+    expect(promotion.getDiscountBadge(date, menus)).toBe("산타");
+  });
 });
