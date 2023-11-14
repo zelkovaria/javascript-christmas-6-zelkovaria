@@ -19,4 +19,16 @@ describe("DessertTest", () => {
       { name: DESSERT_ITEMS[0].name, quantity: 2 },
     ]);
   });
+
+  test("메뉴에 존재하는 디저트의 총 가격을 계산한다", () => {
+    const menus = [
+      { name: DESSERT_ITEMS[0].name, quantity: 2 },
+      { name: DESSERT_ITEMS[1].name, quantity: 3 },
+    ];
+    const totalPrice = dessert.calculateDessertTotalPrice(menus);
+    const expectedPrice =
+      DESSERT_ITEMS[0].price * 2 + DESSERT_ITEMS[1].price * 3;
+
+    expect(totalPrice).toBe(expectedPrice);
+  });
 });
