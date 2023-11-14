@@ -150,10 +150,22 @@ describe("PromotionTest", () => {
     expect(promotion.specailDiscount(date)).toBe(0);
   });
 
-  test("할인전 금액이 1만원 이하인 경우 할인혜택이 없다", () => {
+  test("할인전 금액이 1만원 미만인 경우 할인혜택이 없다", () => {
     const promotion = new Promotion();
     const date = 24;
     const menus = [{ name: "양송이수프", quantity: 1 }];
     expect(promotion.calculateTotalDiscount(date, menus)).toBe(0);
+  });
+
+  test("할인전 금액이 1만원 이상인 경우 할인혜택을 제공한다", () => {
+    const promotion = new Promotion();
+    const date = 3;
+    const menus = [
+      { name: "티본스테이크", quantity: 1 },
+      { name: "바비큐립", quantity: 1 },
+      { name: "초코케이크", quantity: 1 },
+      { name: "제로콜라", quantity: 1 },
+    ];
+    expect(promotion.calculateTotalDiscount(date, menus)).toBe(4223);
   });
 });
