@@ -200,4 +200,10 @@ describe("PromotionTest", () => {
     const expectedPrice = 171531;
     expect(promotion.afterDiscountPrice(date, menus)).toBe(expectedPrice);
   });
+
+  test("할인 금액이 5000원 미만인 경우 증정 배지는 '없음'을 반환한다", () => {
+    const date = 5;
+    const menus = [{ name: "양송이수프", quantity: 1 }];
+    expect(promotion.getDiscountBadge(date, menus)).toBe("없음");
+  });
 });
