@@ -128,4 +128,13 @@ describe("PromotionTest", () => {
     ];
     expect(promotion.applyDiscount(menus)).toBe(25000);
   });
+
+  test("샴페인 미증정 상황시 0원을 반환한다", () => {
+    const promotion = new Promotion();
+    const menus = [
+      { name: "해산물파스타", quantity: 1 },
+      { name: "제로콜라", quantity: 1 },
+    ];
+    expect(promotion.applyDiscount(menus)).toBe(0);
+  });
 });
