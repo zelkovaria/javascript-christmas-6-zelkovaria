@@ -19,4 +19,16 @@ describe("BeverageTest", () => {
       { name: BEVERAGE_ITEMS[0].name, quantity: 3 },
     ]);
   });
+
+  test("메뉴에 존재하는 음료의 총 가격을 계산한다", () => {
+    const menus = [
+      { name: BEVERAGE_ITEMS[0].name, quantity: 3 },
+      { name: BEVERAGE_ITEMS[1].name, quantity: 2 },
+    ];
+    const totalPrice = beverage.calculateBeverageTotalPrice(menus);
+    const expectedPrice =
+      BEVERAGE_ITEMS[0].price * 3 + BEVERAGE_ITEMS[1].price * 2;
+
+    expect(totalPrice).toBe(expectedPrice);
+  });
 });
