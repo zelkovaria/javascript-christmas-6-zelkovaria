@@ -206,4 +206,13 @@ describe("PromotionTest", () => {
     const menus = [{ name: "양송이수프", quantity: 1 }];
     expect(promotion.getDiscountBadge(date, menus)).toBe("없음");
   });
+
+  test("할인 금액이 5000원 이상 1만원 미만인 경우 증정 배지는 '별'을 반환한다", () => {
+    const date = 5;
+    const menus = [
+      { name: "티본스테이크", quantity: 2 },
+      { name: "초코케이크", quantity: 2 },
+    ];
+    expect(promotion.getDiscountBadge(date, menus)).toBe("별");
+  });
 });
