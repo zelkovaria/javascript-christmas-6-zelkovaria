@@ -137,4 +137,10 @@ describe("PromotionTest", () => {
     ];
     expect(promotion.applyDiscount(menus)).toBe(0);
   });
+
+  test("달력에 별이 있는 날짜에는 특별할인 1000원이 추가된다", () => {
+    const promotion = new Promotion();
+    const date = 25;
+    expect(promotion.specailDiscount(date)).toBe(1000);
+  });
 });
