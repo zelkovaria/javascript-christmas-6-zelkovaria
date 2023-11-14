@@ -215,4 +215,13 @@ describe("PromotionTest", () => {
     ];
     expect(promotion.getDiscountBadge(date, menus)).toBe("별");
   });
+
+  test("할인 금액이 1만원 이상 2만원 미만인 경우 증정 배지는 '트리'를 반환한다", () => {
+    const date = 15;
+    const menus = [
+      { name: "티본스테이크", quantity: 5 },
+      { name: "초코케이크", quantity: 2 },
+    ];
+    expect(promotion.getDiscountBadge(date, menus)).toBe("트리");
+  });
 });
