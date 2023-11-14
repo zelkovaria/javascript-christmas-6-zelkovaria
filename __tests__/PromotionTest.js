@@ -153,4 +153,11 @@ describe("PromotionTest", () => {
     ];
     expect(promotion.calculateTotalDiscount(date, menus)).toBe(4223);
   });
+
+  test("할인 적용이 없는 경우 원가를 반환한다", () => {
+    const date = 5;
+    const menus = [{ name: "양송이수프", quantity: 1 }];
+    const expectedPrice = 6000;
+    expect(promotion.afterDiscountPrice(date, menus)).toBe(expectedPrice);
+  });
 });
