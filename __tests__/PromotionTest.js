@@ -143,4 +143,10 @@ describe("PromotionTest", () => {
     const date = 25;
     expect(promotion.specailDiscount(date)).toBe(1000);
   });
+
+  test("달력에 별이 없는 날짜에는 특별할인이 없다", () => {
+    const promotion = new Promotion();
+    const date = 29;
+    expect(promotion.specailDiscount(date)).toBe(0);
+  });
 });
