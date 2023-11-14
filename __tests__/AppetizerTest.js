@@ -19,4 +19,16 @@ describe("AppetizerTest", () => {
       { name: APPETIZER_ITEMS[0].name, quantity: 2 },
     ]);
   });
+
+  test("메뉴에 존재하는 애피타이저의 총 가격을 계산한다", () => {
+    const menus = [
+      { name: APPETIZER_ITEMS[0].name, quantity: 2 },
+      { name: APPETIZER_ITEMS[1].name, quantity: 1 },
+    ];
+    const totalPrice = appetizer.calculateAppetizerTotalPrice(menus);
+    const expectedPrice =
+      APPETIZER_ITEMS[0].price * 2 + APPETIZER_ITEMS[1].price * 1;
+
+    expect(totalPrice).toBe(expectedPrice);
+  });
 });
