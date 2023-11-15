@@ -114,7 +114,7 @@ class Promotion {
       this.weekendDiscount(date, menus) +
       this.specailDiscount(date);
 
-    if (this.applyPromotionItems(menus) === CONSTANTS.CHAMPAGNE_PRICE) {
+    if (this.applyPromotionItems(menus) === CONSTANTS.APPLY_CHAMPAGNE) {
       totalDiscount += CONSTANTS.CHAMPAGNE_PRICE;
     }
 
