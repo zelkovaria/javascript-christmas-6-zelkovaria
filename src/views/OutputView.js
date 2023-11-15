@@ -47,7 +47,7 @@ const OutputView = {
         value !== MESSAGE.NOTHING
       ) {
         const formattedValue = `-${value}원`;
-        MissionUtils.Console.print(`${key}: ${formattedValue}\n`);
+        MissionUtils.Console.print(`${key}: ${formattedValue}`);
       }
     }
   },

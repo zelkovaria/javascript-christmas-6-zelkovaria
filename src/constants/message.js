@@ -17,7 +17,7 @@ export const MESSAGE = Object.freeze({
   OUTPUT_MONEY_UNIT: "원",
   OUTPUT_MONEY_UNIT_ENTER: "원\n",
   OUTPUT_APPLY_MENU: "<증정 메뉴>\n",
-  BENEFIT_SERVICE: "<혜택 내역>\n",
+  BENEFIT_SERVICE: "<혜택 내역>",
   BENEFIT_SERVICE_NOTHING: "<혜택 내역>\n없음\n",
   TOTAL_DISCOUNT_MONEY: "<총혜택 금액>",
   OUTPUT_EVENT_BADGE: "<12월 이벤트 배지>",
