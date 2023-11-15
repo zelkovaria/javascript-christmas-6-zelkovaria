@@ -45,5 +45,17 @@ describe("ValidateTest", () => {
         Validator.validateOnlyBeverage(menus, mockPromotion)
       ).toThrow(MESSAGE.INVALID_BEVERAGE_ONLY);
     });
+
+    test("음료 외의 항목을 포함한 메뉴는 예외를 발생시키지 않는다", () => {
+      mockPromotion.isOnlyBeverageOrder = jest.fn().mockReturnValue(false);
+
+      const menus = [
+        { name: "티본스테이크", quantity: 1 },
+        { name: "제로콜라", quantity: 2 },
+      ];
+      expect(() =>
+        Validator.validateOnlyBeverage(menus, mockPromotion)
+      ).not.toThrow();
+    });
   });
 });
