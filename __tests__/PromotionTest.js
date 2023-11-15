@@ -151,7 +151,7 @@ describe("PromotionTest", () => {
       { name: "초코케이크", quantity: 1 },
       { name: "제로콜라", quantity: 1 },
     ];
-    expect(promotion.calculateTotalDiscount(date, menus)).toBe(4223);
+    expect(promotion.calculateTotalDiscount(date, menus)).toBe(29223);
   });
 
   test("할인 적용이 없는 경우 원가를 반환한다", () => {
@@ -177,7 +177,7 @@ describe("PromotionTest", () => {
       { name: "티본스테이크", quantity: 3 },
       { name: "초코케이크", quantity: 1 },
     ];
-    const expectedPrice = 176577;
+    const expectedPrice = 151577;
     expect(promotion.afterDiscountPrice(date, menus)).toBe(expectedPrice);
   });
 
@@ -197,7 +197,7 @@ describe("PromotionTest", () => {
       { name: "티본스테이크", quantity: 3 },
       { name: "초코케이크", quantity: 1 },
     ];
-    const expectedPrice = 171531;
+    const expectedPrice = 146531;
     expect(promotion.afterDiscountPrice(date, menus)).toBe(expectedPrice);
   });
 
@@ -209,19 +209,13 @@ describe("PromotionTest", () => {
 
   test("할인 금액이 5000원 이상 1만원 미만인 경우 증정 배지는 '별'을 반환한다", () => {
     const date = 5;
-    const menus = [
-      { name: "티본스테이크", quantity: 2 },
-      { name: "초코케이크", quantity: 2 },
-    ];
+    const menus = [{ name: "초코케이크", quantity: 3 }];
     expect(promotion.getDiscountBadge(date, menus)).toBe("별");
   });
 
   test("할인 금액이 1만원 이상 2만원 미만인 경우 증정 배지는 '트리'를 반환한다", () => {
-    const date = 15;
-    const menus = [
-      { name: "티본스테이크", quantity: 5 },
-      { name: "초코케이크", quantity: 2 },
-    ];
+    const date = 5;
+    const menus = [{ name: "초코케이크", quantity: 5 }];
     expect(promotion.getDiscountBadge(date, menus)).toBe("트리");
   });
 
