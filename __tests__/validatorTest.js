@@ -1,4 +1,5 @@
 import Validator from "../src/utils/validator";
+import Promotion from "../src/models/Promotion.js";
 import { MESSAGE } from "../src/constants/message";
 
 describe("ValidateTest", () => {
@@ -27,5 +28,22 @@ describe("ValidateTest", () => {
     ["티본스테이크 2", MESSAGE.INVALID_MENU_ORDER],
   ])("잘못된 구분자를 사용한 주문은 예외가 발생한다", (input, expected) => {
     expect(() => Validator.validateMenuOrder(input)).toThrow(expected);
+  });
+
+  describe("validateOnlyBeverage", () => {
+    let mockPromotion;
+
+    beforeEach(() => {
+      mockPromotion = new Promotion();
+    });
+
+    test("음료 메뉴만 포함된 경우는 예외가 발생한다", () => {
+      mockPromotion.isOnlyBeverageOrder = jest.fn().mockReturnValue(true);
+
+      const menus = [{ name: "제로콜라", quantity: 2 }];
+      expect(() =>
+        Validator.validateOnlyBeverage(menus, mockPromotion)
+      ).toThrow(MESSAGE.INVALID_BEVERAGE_ONLY);
+    });
   });
 });
