@@ -54,13 +54,11 @@ const OutputView = {
 
   readTotalDiscount(totalDiscount) {
     MissionUtils.Console.print(MESSAGE.TOTAL_DISCOUNT_MONEY);
-    if (totalDiscount === 0) {
-      MissionUtils.Console.print(MESSAGE.NOTHING_MONEY);
-    } else {
-      MissionUtils.Console.print(
-        `-${FormatPrice.formatPrice(totalDiscount)}원\n`
-      );
-    }
+    totalDiscount === 0
+      ? MissionUtils.Console.print(MESSAGE.NOTHING_MONEY)
+      : MissionUtils.Console.print(
+          `-${FormatPrice.formatPrice(totalDiscount)}원\n`
+        );
   },
 
   readAfterDiscountPrice(price, totalDiscount) {
